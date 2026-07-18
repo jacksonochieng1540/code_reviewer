@@ -1,15 +1,36 @@
 :root {
-  --crm-bg: #0f1115;
-  --crm-panel: #171a21;
-  --crm-border: #262b36;
-  --crm-accent: #6366f1;
+  /* Surface colors */
+  --crm-bg: #0d0e11;
+  --crm-panel: #161b22;
+  --crm-input-bg: #090a0c;
+  
+  /* Borders and interactive accents */
+  --crm-border: #30363d;
+  --crm-accent-success: #238636;
+  --crm-accent-success-hover: #2ea043;
+  --crm-accent-focus: #1f6feb;
+  
+  /* Typography colors */
+  --crm-text-primary: #c9d1d9;
+  --crm-text-secondary: #8b949e;
+  --crm-text-placeholder: #57606a;
+  
+  /* Standard metrics */
+  --crm-radius: 6px;
+  --crm-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --crm-font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
+/* Global resets and structure */
 body {
   background-color: var(--crm-bg);
-  color: #e5e7eb;
+  color: var(--crm-text-primary);
+  font-family: var(--crm-font-sans);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Containers and components */
 .navbar-crm {
   background-color: var(--crm-panel);
   border-bottom: 1px solid var(--crm-border);
@@ -18,51 +39,109 @@ body {
 .crm-card {
   background-color: var(--crm-panel);
   border: 1px solid var(--crm-border);
-  border-radius: 0.75rem;
-  color: #e5e7eb;
+  border-radius: var(--crm-radius);
+  color: var(--crm-text-primary);
+}
+
+/* Unified form controls */
+.code-input,
+.form-select,
+.form-control#title {
+  background-color: var(--crm-input-bg);
+  color: var(--crm-text-primary);
+  border: 1px solid var(--crm-border);
+  border-radius: var(--crm-radius);
+  font-family: var(--crm-font-mono);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .code-input {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.9rem;
-  background-color: #0b0d12;
-  color: #e5e7eb;
-  border: 1px solid var(--crm-border);
   resize: vertical;
 }
-.code-input:focus {
-  background-color: #0b0d12;
-  color: #e5e7eb;
-  border-color: var(--crm-accent);
-  box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+
+/* Cross-browser placeholder contrast fix */
+.code-input::placeholder,
+.form-control::placeholder {
+  color: var(--crm-text-placeholder);
+  opacity: 1;
 }
 
-.form-select, .form-control#title {
-  background-color: #0b0d12;
-  color: #e5e7eb;
-  border: 1px solid var(--crm-border);
+/* Unified interactive focus states */
+.code-input:focus,
+.form-select:focus,
+.form-control#title:focus {
+  background-color: var(--crm-input-bg);
+  color: var(--crm-text-primary);
+  border-color: var(--crm-accent-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.25);
 }
 
+/* Primary action button styling */
+.btn-crm-submit {
+  background-color: var(--crm-accent-success);
+  color: #ffffff;
+  border: 1px solid rgba(240, 246, 252, 0.1);
+  border-radius: var(--crm-radius);
+  font-family: var(--crm-font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-crm-submit:hover {
+  background-color: var(--crm-accent-success-hover);
+}
+
+/* Issue lists and notifications */
 .issue-card {
-  border-left: 4px solid var(--crm-border);
-  border-radius: 0.5rem;
-  background-color: #0b0d12;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.75rem;
+  border: 1px solid var(--crm-border);
+  border-left-width: 4px;
+  border-radius: var(--crm-radius);
+  background-color: var(--crm-input-bg);
+  padding: 12px 16px;
+  margin-bottom: 12px;
 }
-.issue-card.severity-critical { border-left-color: #ef4444; }
-.issue-card.severity-high { border-left-color: #f97316; }
-.issue-card.severity-medium { border-left-color: #eab308; }
-.issue-card.severity-low { border-left-color: #38bdf8; }
-.issue-card.severity-info { border-left-color: #64748b; }
 
-.badge-severity-critical { background-color: #ef4444; }
-.badge-severity-high { background-color: #f97316; }
-.badge-severity-medium { background-color: #eab308; color: #111 !important; }
-.badge-severity-low { background-color: #38bdf8; color: #111 !important; }
-.badge-severity-info { background-color: #64748b; }
+.issue-card.severity-critical { border-left-color: #da3633; }
+.issue-card.severity-high     { border-left-color: #f0883e; }
+.issue-card.severity-medium   { border-left-color: #d29922; }
+.issue-card.severity-low      { border-left-color: #388bfd; }
+.issue-card.severity-info     { border-left-color: var(--crm-text-secondary); }
 
+/* Unified badge properties */
+.badge-severity-critical,
+.badge-severity-high,
+.badge-severity-medium,
+.badge-severity-low,
+.badge-severity-info {
+  font-family: var(--crm-font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 2em;
+  border: 1px solid transparent;
+}
+
+/* Individual badge variations */
+.badge-severity-critical { background-color: rgba(248, 81, 73, 0.15);   color: #f85149; border-color: rgba(248, 81, 73, 0.4); }
+.badge-severity-high     { background-color: rgba(240, 136, 62, 0.15);  color: #f0883e; border-color: rgba(240, 136, 62, 0.4); }
+.badge-severity-medium   { background-color: rgba(210, 153, 34, 0.15);  color: #d29922; border-color: rgba(210, 153, 34, 0.4); }
+.badge-severity-low      { background-color: rgba(56, 139, 253, 0.15);  color: #388bfd; border-color: rgba(56, 139, 253, 0.4); }
+.badge-severity-info     { background-color: rgba(139, 148, 158, 0.15); color: var(--crm-text-secondary); border-color: rgba(139, 148, 158, 0.4); }
+
+/* Code presentation panel */
 #refactor-code {
+  font-family: var(--crm-font-mono);
+  font-size: 13px;
+  line-height: 1.6;
   white-space: pre-wrap;
   word-break: break-word;
+  background-color: var(--crm-panel);
+  padding: 16px;
+  border-radius: var(--crm-radius);
+  border: 1px solid var(--crm-border);
 }
