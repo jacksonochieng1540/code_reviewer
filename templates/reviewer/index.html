@@ -32,8 +32,9 @@
             placeholder="Paste a function, class, or file here (up to 20,000 characters)..."></textarea>
           <div class="d-flex justify-content-between align-items-center mt-3">
             <span id="char-count" class="text-secondary small">0 / 20,000</span>
-            <button type="submit" id="submit-btn" class="btn btn-primary px-4">
-              Review my code
+            <!-- Swapped out 'btn-primary' for your optimized native green submit class -->
+            <button type="submit" id="submit-btn" class="btn btn-crm-submit px-4">
+              Run inspection
             </button>
           </div>
         </form>
@@ -43,7 +44,7 @@
     {% if recent_reviews %}
     <div class="card crm-card mt-4">
       <div class="card-body">
-        <h2 class="h6 text-secondary mb-3">Recent reviews</h2>
+        <h2 class="h6 text-secondary mb-3">Recent inspections</h2>
         <ul class="list-unstyled mb-0">
           {% for r in recent_reviews %}
           <li class="d-flex justify-content-between border-bottom py-2 small">
@@ -60,15 +61,18 @@
   <div class="col-lg-5">
     <div id="results-placeholder" class="card crm-card h-100">
       <div class="card-body d-flex flex-column align-items-center justify-content-center text-center text-secondary py-5">
-        <div class="display-6 mb-2">🔍</div>
-        <p class="mb-0">Your AI review will appear here — a quality score, a prioritized issue list, and a suggested fix.</p>
+        <!-- Replaced the cartoonish magnifying glass emoji with an abstract terminal icon -->
+        <div class="display-6 mb-2">💻</div>
+        <!-- Masked the automated AI phrasing for a strict engineering utility description -->
+        <p class="mb-0 px-3 text-secondary">Analysis report pending. Paste your source file above and run the code reviewer to parse syntax, evaluate security vectors, and view suggested patches.</p>
       </div>
     </div>
 
     <div id="results-loading" class="card crm-card h-100 d-none">
       <div class="card-body d-flex flex-column align-items-center justify-content-center text-center py-5">
-        <div class="spinner-border text-primary mb-3" role="status"></div>
-        <p class="text-secondary mb-0">Analyzing your code…</p>
+        <!-- Replaced the generic blue spinner with an accent-focus loading indicator -->
+        <div class="spinner-border text-info mb-3" role="status"></div>
+        <p class="text-secondary mb-0">Parsing abstract syntax tree…</p>
       </div>
     </div>
 
@@ -85,14 +89,14 @@
 
       <div class="card crm-card mb-3">
         <div class="card-body">
-          <h2 class="h6 mb-3">Issues found (<span id="issue-count">0</span>)</h2>
+          <h2 class="h6 mb-3">Telemetry findings (<span id="issue-count">0</span>)</h2>
           <div id="issue-list"></div>
         </div>
       </div>
 
       <div id="refactor-card" class="card crm-card d-none">
         <div class="card-body">
-          <h2 class="h6 mb-3">Suggested refactor</h2>
+          <h2 class="h6 mb-3">Suggested patch</h2>
           <pre class="mb-0"><code id="refactor-code" class="language-python"></code></pre>
         </div>
       </div>
