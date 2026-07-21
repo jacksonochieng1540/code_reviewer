@@ -63,7 +63,6 @@ def get_client() -> Anthropic:
 def _extract_json(raw_text: str) -> dict:
     """Best-effort extraction of a JSON object from the model's text output."""
     text = raw_text.strip()
-    # Strip accidental markdown fences even though the prompt forbids them.
     if text.startswith("```"):
         text = text.strip("`")
         if text.lower().startswith("json"):
